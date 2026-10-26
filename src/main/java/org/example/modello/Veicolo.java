@@ -3,7 +3,7 @@ package org.example.modello;
 import org.apache.commons.lang3.Validate;
 
 public abstract class Veicolo {
-    private enum Stato {
+    protected enum Stato {
         LIBERO, IN_USO, IN_RICARICA
     }
 
