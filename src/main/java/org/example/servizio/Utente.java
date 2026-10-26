@@ -27,4 +27,8 @@ public class Utente {
         if (CodiceFiscale.isFormatValid(codFiscale)) this.codFiscale = codFiscale;
         else throw new CodiceFiscaleNonValidoException(codFiscale);
     }
+
+    public String getCodFiscale() {
+        return codFiscale;
+    }
 }
