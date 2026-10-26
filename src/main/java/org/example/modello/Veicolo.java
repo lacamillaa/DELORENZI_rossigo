@@ -12,6 +12,10 @@ public abstract class Veicolo {
         this.stato = Stato.LIBERO;
     }
 
+    public String getCodVeicolo() {
+        return codVeicolo;
+    }
+
     public abstract Double calcolaCosto(Integer minuti);
     public abstract Double consumoBatteriaPerMinuto();
 }
