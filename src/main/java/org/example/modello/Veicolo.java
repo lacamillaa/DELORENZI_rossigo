@@ -30,6 +30,14 @@ public abstract class Veicolo {
         this.stato = stato;
     }
 
-    public abstract Double calcolaCosto(Integer minuti);
-    public abstract Double consumoBatteriaPerMinuto();
+    public void scalaBatteria(Float consumo) {
+        this.batteria -= consumo;
+        this.batteria = Math.max(this.batteria, 0);
+        if (this.batteria <= 15) {
+            this.setStato(Stato.IN_RICARICA);
+        }
+    }
+
+    public abstract Float calcolaCosto(Integer minuti);
+    public abstract Float consumoBatteriaPerMinuto();
 }

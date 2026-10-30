@@ -9,13 +9,13 @@ public class Monopattino extends Veicolo {
     }
 
     @Override
-    public Double calcolaCosto(Integer minuti) {
-        return 0.25 * minuti;
+    public Float calcolaCosto(Integer minuti) {
+        return 0.25F * minuti;
     }
 
     @Override
-    public Double consumoBatteriaPerMinuto() {
-        return 0.5;
+    public Float consumoBatteriaPerMinuto() {
+        return 0.5F;
     }
 
     public boolean isLimitatoInZonaPedonale() {

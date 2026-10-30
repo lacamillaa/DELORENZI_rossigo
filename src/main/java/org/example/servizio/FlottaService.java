@@ -42,9 +42,18 @@ public class FlottaService {
         if (v.getBatteria() <= 15) {
             throw new BatteriaScaricaException(codVeicolo, v.getBatteria());
         }
-        // noleggia il veicolo all'utente per 1g massimo
-        Noleggio n = new Noleggio(u, v, LocalDateTime.now(), LocalDateTime.now().plusHours(24));
+        // noleggia il veicolo all'utente per 4h massimo
+        Noleggio n = new Noleggio(u, v, LocalDateTime.now(), LocalDateTime.now().plusHours(4));
         noleggioHashMap.put(v.getCodVeicolo(), n);
         v.setStato(Stato.IN_USO);
+    }
+
+    public static void terminaNoleggio(String codVeicolo, Integer minutiUsati) {
+        Veicolo v = veicoliReg.getOrDefault(codVeicolo, null);
+        if (v == null) throw new VeicoloNonTrovatoException(codVeicolo);
+        Float costoTot = v.calcolaCosto(minutiUsati) + 1;
+        Float consumoBatteria = v.consumoBatteriaPerMinuto() * minutiUsati;
+        // addebita il costoTot all'utente
+        v.scalaBatteria(consumoBatteria);
     }
 }

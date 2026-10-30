@@ -11,13 +11,13 @@ public class Bici extends Veicolo {
     }
 
     @Override
-    public Double calcolaCosto(Integer minuti) {
-        return 0.15 * minuti;
+    public Float calcolaCosto(Integer minuti) {
+        return 0.15F * minuti;
     }
 
     @Override
-    public Double consumoBatteriaPerMinuto() {
-        return 0.2;
+    public Float consumoBatteriaPerMinuto() {
+        return 0.2F;
     }
 
     public Integer getMarce() {
