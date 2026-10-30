@@ -1,9 +1,6 @@
 package org.example.servizio;
 
-import org.example.eccezioni.UtenteGiàRegistratoException;
-import org.example.eccezioni.UtenteNonTrovatoException;
-import org.example.eccezioni.VeicoloGiàRegistratoException;
-import org.example.eccezioni.VeicoloNonTrovatoException;
+import org.example.eccezioni.*;
 import org.example.modello.*;
 
 import java.util.*;
@@ -31,9 +28,13 @@ public class FlottaService {
         if (!utentiReg.containsKey(codFiscale)) {
             throw new UtenteNonTrovatoException(codFiscale);
         }
-        // fa il noleggio
         if (!veicoliReg.containsKey(codVeicolo)) {
             throw new VeicoloNonTrovatoException(codVeicolo);
+        }
+        // fa il noleggio
+        Veicolo v = veicoliReg.get(codVeicolo);
+        if (v.getStato() == Stato.IN_USO) {
+            throw new VeicoloGiàInUsoException(codVeicolo);
         }
     }
 }
