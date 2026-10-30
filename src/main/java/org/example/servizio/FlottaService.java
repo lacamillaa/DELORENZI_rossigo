@@ -3,11 +3,13 @@ package org.example.servizio;
 import org.example.eccezioni.*;
 import org.example.modello.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class FlottaService {
     private static HashMap<String, Veicolo> veicoliReg = new HashMap<>();
     private static HashMap<String, Utente> utentiReg = new HashMap<>();
+    private static HashMap<String, Noleggio> noleggioHashMap = new HashMap<>();
 
     public static void registraVeicolo(Veicolo v) {
         if (veicoliReg.containsKey(v.getCodVeicolo())) {
@@ -28,6 +30,7 @@ public class FlottaService {
         if (!utentiReg.containsKey(codFiscale)) {
             throw new UtenteNonTrovatoException(codFiscale);
         }
+        Utente u = utentiReg.get(codFiscale);
         if (!veicoliReg.containsKey(codVeicolo)) {
             throw new VeicoloNonTrovatoException(codVeicolo);
         }
@@ -39,5 +42,9 @@ public class FlottaService {
         if (v.getBatteria() <= 15) {
             throw new BatteriaScaricaException(codVeicolo, v.getBatteria());
         }
+        // noleggia il veicolo all'utente per 1g massimo
+        Noleggio n = new Noleggio(u, v, LocalDateTime.now(), LocalDateTime.now().plusHours(24));
+        noleggioHashMap.put(v.getCodVeicolo(), n);
+        v.setStato(Stato.IN_USO);
     }
 }
