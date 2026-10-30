@@ -27,7 +27,7 @@ public class FlottaService {
     }
 
     // se la batteria è scarica termina noleggio
-    public static void sbloccaVeicolo(String codVeicolo, Integer codFiscale) {
+    public static void sbloccaVeicolo(String codVeicolo, String codFiscale) {
         if (!utentiReg.containsKey(codFiscale)) {
             throw new UtenteNonTrovatoException(codFiscale);
         }
