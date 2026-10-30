@@ -33,8 +33,8 @@ public class FlottaService {
         }
         // fa il noleggio
         Veicolo v = veicoliReg.get(codVeicolo);
-        if (v.getStato() == Stato.IN_USO) {
-            throw new VeicoloGiàInUsoException(codVeicolo);
+        if (v.getStato() != Stato.LIBERO) {
+            throw new VeicoloNonDisponibileException(codVeicolo);
         }
         if (v.getBatteria() <= 15) {
             throw new BatteriaScaricaException(codVeicolo, v.getBatteria());

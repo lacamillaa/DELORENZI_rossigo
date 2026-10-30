@@ -1,7 +1,7 @@
 package org.example.eccezioni;
 
-public class VeicoloGiàInUsoException extends RuntimeException {
-    public VeicoloGiàInUsoException(String codVeicolo) {
+public class VeicoloNonDisponibileException extends RuntimeException {
+    public VeicoloNonDisponibileException(String codVeicolo) {
         super("[ERRORE] Il veicolo con codice " + codVeicolo + " attualmente non è disponibile");
     }
 }
