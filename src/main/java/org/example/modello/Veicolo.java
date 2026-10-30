@@ -16,6 +16,18 @@ public abstract class Veicolo {
         return codVeicolo;
     }
 
+    public Float getBatteria() {
+        return batteria;
+    }
+
+    public Stato getStato() {
+        return stato;
+    }
+
+    public void setStato(Stato stato) {
+        this.stato = stato;
+    }
+
     public abstract Double calcolaCosto(Integer minuti);
     public abstract Double consumoBatteriaPerMinuto();
 }
