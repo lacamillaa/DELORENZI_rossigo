@@ -67,11 +67,16 @@ public class FlottaService {
         }
         v.scalaBatteria(consumoBatteria);
         if (v.getBatteria() < 15) {
-            v.setStato(Stato.IN_RICARICA);
+            mettiInRicarica(codVeicolo);
         }
         else {
             v.setStato(Stato.LIBERO);
         }
         noleggioHashMap.remove(codVeicolo);
+    }
+
+    public static void mettiInRicarica(String codVeicolo) {
+        Veicolo v = veicoliReg.get(codVeicolo);
+        v.setStato(Stato.IN_RICARICA);
     }
 }
