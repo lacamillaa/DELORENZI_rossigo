@@ -14,7 +14,8 @@ public class Utente {
     private String nome;
     private String email;
     private String codFiscale;
-    private Double credito;
+    private Float credito = 0.0F;
+    private Float debito = 0.0F;
 
     public Utente(String nome, String email, String codFiscale) {
         EmailValidator validator = EmailValidator.getInstance(true, true);
@@ -29,5 +30,40 @@ public class Utente {
 
     public String getCodFiscale() {
         return codFiscale;
+    }
+
+    public Float getCredito() {
+        return credito;
+    }
+
+    public Float getDebito() {
+        return debito;
+    }
+
+    public void ricaricaCredito(Float somma) {
+        // riduci immediatamente il debito
+        // somma -= debito
+        // se somma < 0 (debito > somma): debito -= somma; return;
+        // else debito = 0;
+        // poi aggiungi al credito
+        somma -= this.debito;
+        if (somma < 0) {
+            this.debito -= somma;
+            return;
+        }
+        else {
+            this.debito = 0.0F;
+        }
+        this.credito += somma;
+    }
+
+    public void addebita(Float costo) {
+        if (costo > this.credito) {
+            this.debito += costo - this.credito;
+            Float credito = this.credito;
+            this.credito = 0.0F;
+            throw new CreditoInsufficienteException(costo, credito);
+        }
+        this.credito -= costo;
     }
 }

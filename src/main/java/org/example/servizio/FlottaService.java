@@ -6,6 +6,8 @@ import org.example.modello.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static java.lang.IO.println;
+
 public class FlottaService {
     private static HashMap<String, Veicolo> veicoliReg = new HashMap<>();
     private static HashMap<String, Utente> utentiReg = new HashMap<>();
@@ -54,6 +56,22 @@ public class FlottaService {
         Float costoTot = v.calcolaCosto(minutiUsati) + 1;
         Float consumoBatteria = v.consumoBatteriaPerMinuto() * minutiUsati;
         // addebita il costoTot all'utente
+        Noleggio n = noleggioHashMap.getOrDefault(codVeicolo, null);
+        if (n == null) return;
+        Utente u = n.getUtente();
+        try {
+            u.addebita(costoTot);
+        } catch (CreditoInsufficienteException e) {
+            println(e.getMessage());
+            println("L'utente " + u.getCodFiscale() + " è in debito di " + u.getDebito() + "eur");
+        }
         v.scalaBatteria(consumoBatteria);
+        if (v.getBatteria() < 15) {
+            v.setStato(Stato.IN_RICARICA);
+        }
+        else {
+            v.setStato(Stato.LIBERO);
+        }
+        noleggioHashMap.remove(codVeicolo);
     }
 }
