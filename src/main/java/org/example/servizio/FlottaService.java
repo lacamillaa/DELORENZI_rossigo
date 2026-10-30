@@ -3,6 +3,7 @@ package org.example.servizio;
 import org.example.eccezioni.UtenteGiàRegistratoException;
 import org.example.eccezioni.UtenteNonTrovatoException;
 import org.example.eccezioni.VeicoloGiàRegistratoException;
+import org.example.eccezioni.VeicoloNonTrovatoException;
 import org.example.modello.*;
 
 import java.util.*;
@@ -31,6 +32,8 @@ public class FlottaService {
             throw new UtenteNonTrovatoException(codFiscale);
         }
         // fa il noleggio
-
+        if (!veicoliReg.containsKey(codVeicolo)) {
+            throw new VeicoloNonTrovatoException(codVeicolo);
+        }
     }
 }
