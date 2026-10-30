@@ -36,5 +36,8 @@ public class FlottaService {
         if (v.getStato() == Stato.IN_USO) {
             throw new VeicoloGiàInUsoException(codVeicolo);
         }
+        if (v.getBatteria() <= 15) {
+            throw new BatteriaScaricaException(codVeicolo, v.getBatteria());
+        }
     }
 }
