@@ -10,7 +10,6 @@ import java.util.*;
 public class FlottaService {
     private static HashMap<String, Veicolo> veicoliReg = new HashMap<>();
     private static HashMap<String, Utente> utentiReg = new HashMap<>();
-    private static ArrayList<Noleggio> noleggi = new ArrayList<>();
 
     public static void registraVeicolo(Veicolo v) {
         if (veicoliReg.containsKey(v.getCodVeicolo())) {
@@ -27,9 +26,9 @@ public class FlottaService {
     }
 
     // se la batteria è scarica termina noleggio
-    public static void sbloccaVeicolo(String codVeicolo, Integer idUtente) {
-        if (Utente.getUtenteById(idUtente).isEmpty()) {
-            throw new UtenteNonTrovatoException(idUtente);
+    public static void sbloccaVeicolo(String codVeicolo, Integer codFiscale) {
+        if (!utentiReg.containsKey(codFiscale)) {
+            throw new UtenteNonTrovatoException(codFiscale);
         }
         // fa il noleggio
 

@@ -1,6 +1,8 @@
 package org.example.modello;
 import org.apache.commons.lang3.Validate;
 
+import java.util.*;
+
 public abstract class Veicolo {
     private String codVeicolo;
     private Float batteria;

@@ -9,7 +9,6 @@ import java.util.Optional;
 
 public class Utente {
     private static Integer USER_COUNT = 0;
-    private static ArrayList<Utente> USER_MAP = new ArrayList<>();
 
     private Integer id;
     private String nome;
@@ -26,15 +25,6 @@ public class Utente {
         Utente.USER_COUNT++;
         this.id = Utente.USER_COUNT;
         this.nome = nome;
-        USER_MAP.add(this);
-    }
-
-    public static Optional<Utente> getUtenteById(Integer id) {
-        try {
-            return Optional.of(USER_MAP.get(id));
-        } catch (IndexOutOfBoundsException e) {
-            return Optional.empty();
-        }
     }
 
     public String getCodFiscale() {
