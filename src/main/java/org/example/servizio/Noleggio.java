@@ -7,14 +7,10 @@ import java.time.LocalDateTime;
 public class Noleggio {
     private Utente utente;
     private Veicolo veicolo;
-    private LocalDateTime oraInizio;
-    private LocalDateTime oraFine;
 
-    public Noleggio(Utente utente, Veicolo veicolo, LocalDateTime oraInizio, LocalDateTime oraFine) {
+    public Noleggio(Utente utente, Veicolo veicolo) {
         this.utente = utente;
         this.veicolo = veicolo;
-        this.oraInizio = oraInizio;
-        this.oraFine = oraFine;
     }
 
     public Utente getUtente() {
@@ -31,21 +27,5 @@ public class Noleggio {
 
     public void setVeicolo(Veicolo veicolo) {
         this.veicolo = veicolo;
-    }
-
-    public LocalDateTime getOraInizio() {
-        return oraInizio;
-    }
-
-    public void setOraInizio(LocalDateTime oraInizio) {
-        this.oraInizio = oraInizio;
-    }
-
-    public LocalDateTime getOraFine() {
-        return oraFine;
-    }
-
-    public void setOraFine(LocalDateTime oraFine) {
-        this.oraFine = oraFine;
     }
 }

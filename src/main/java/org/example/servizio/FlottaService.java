@@ -44,8 +44,8 @@ public class FlottaService {
         if (v.getBatteria() <= 15) {
             throw new BatteriaScaricaException(codVeicolo, v.getBatteria());
         }
-        // noleggia il veicolo all'utente per 4h massimo
-        Noleggio n = new Noleggio(u, v, LocalDateTime.now(), LocalDateTime.now().plusHours(4));
+        // noleggia il veicolo all'utente
+        Noleggio n = new Noleggio(u, v);
         noleggioHashMap.put(v.getCodVeicolo(), n);
         v.setStato(Stato.IN_USO);
     }
