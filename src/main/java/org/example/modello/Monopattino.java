@@ -21,4 +21,13 @@ public class Monopattino extends Veicolo {
     public boolean isLimitatoInZonaPedonale() {
         return this.velocitàMax > 30.0;
     }
+
+    @Override
+    public String toString() {
+        return ("MONOPATTINO " + getCodVeicolo()) + "\n" +
+                super.toString() + "\n" +
+                ("velocità max: " + velocitàMax + "km/h") +
+                (isLimitatoInZonaPedonale() ? "(lim. in zona pedonale)" : "") + "\n" +
+                ("tariffa: " + calcolaCosto(1) + "eur/min");
+    }
 }

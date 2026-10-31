@@ -2,12 +2,14 @@ package org.example;
 
 import org.example.modello.Bici;
 import org.example.modello.Monopattino;
+import org.example.modello.Stato;
 import org.example.modello.Veicolo;
 import org.example.servizio.FlottaService;
 import org.example.servizio.Utente;
 
 import java.util.ArrayList;
 
+import static java.lang.IO.print;
 import static java.lang.IO.println;
 
 public class Main {
@@ -64,5 +66,18 @@ public class Main {
         } catch (RuntimeException e) {
             println(e.getMessage());
         }
+        Utente u = FlottaService.getUtente("BNCCHR92P56G273V");
+        FlottaService.sbloccaVeicolo("EF34552H", u.getCodFiscale());
+        // stampa
+        println("UTENTI: ");
+        FlottaService.stampaUtenti();
+        println("VEICOLI: ");
+        FlottaService.stampaVeicoli();
+        println("NOLEGGI: ");
+        FlottaService.stampaNoleggi();
+        println("VEICOLI IN USO: ");
+        FlottaService.stampaVeicoli(Stato.IN_USO);
+        println("VEICOLI IN RICARICA: ");
+        FlottaService.stampaVeicoli(Stato.IN_RICARICA);
     }
 }

@@ -38,6 +38,12 @@ public abstract class Veicolo {
         }
     }
 
+    @Override
+    public String toString() {
+        return ("Stato attuale: " + getStato()) + "\n" +
+                ("Livello batteria: " + getBatteria());
+    }
+
     public abstract Float calcolaCosto(Integer minuti);
     public abstract Float consumoBatteriaPerMinuto();
 }

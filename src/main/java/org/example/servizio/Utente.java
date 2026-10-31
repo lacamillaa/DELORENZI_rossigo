@@ -7,10 +7,10 @@ import org.example.eccezioni.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Utente {
-    private static Integer USER_COUNT = 0;
+import static java.lang.IO.print;
+import static java.lang.IO.println;
 
-    private Integer id;
+public class Utente {
     private String nome;
     private String email;
     private String codFiscale;
@@ -23,17 +23,11 @@ public class Utente {
         else throw new EmailNonValidaException(email);
         if (CodiceFiscale.isFormatValid(codFiscale)) this.codFiscale = codFiscale;
         else throw new CodiceFiscaleNonValidoException(codFiscale);
-        Utente.USER_COUNT++;
-        this.id = Utente.USER_COUNT;
         this.nome = nome;
     }
 
     public String getCodFiscale() {
         return codFiscale;
-    }
-
-    public Float getCredito() {
-        return credito;
     }
 
     public Float getDebito() {
@@ -65,5 +59,13 @@ public class Utente {
             throw new CreditoInsufficienteException(costo, credito, this);
         }
         this.credito -= costo;
+    }
+
+    @Override
+    public String toString() {
+        return (nome + " (cod.fiscale " + codFiscale + ")") + "\n" +
+                ("email: " + email) + "\n" +
+                ("credito attuale: " + credito + "eur") + "\n" +
+                ("debito: " + debito + "eur");
     }
 }

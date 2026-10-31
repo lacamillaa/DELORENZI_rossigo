@@ -27,6 +27,32 @@ public class FlottaService {
         utentiReg.put(u.getCodFiscale(), u);
     }
 
+    public static void stampaUtenti() {
+        for (Utente u : utentiReg.values()) {
+            println(u);
+        }
+    }
+
+    public static void stampaVeicoli() {
+        for (Veicolo v : veicoliReg.values()) {
+            println(v);
+        }
+    }
+
+    public static void stampaVeicoli(Stato stato) {
+        for (Veicolo v : veicoliReg.values()) {
+            if (v.getStato() == stato) {
+                println(v.getCodVeicolo());
+            }
+        }
+    }
+
+    public static void stampaNoleggi() {
+        for (Noleggio n : noleggioHashMap.values()) {
+            println(n);
+        }
+    }
+
     public static Utente getUtente(String codFiscale) {
         if (!utentiReg.containsKey(codFiscale)) {
             throw new UtenteNonTrovatoException(codFiscale);

@@ -20,7 +20,11 @@ public class Bici extends Veicolo {
         return 0.2F;
     }
 
-    public Integer getMarce() {
-        return marce;
+    @Override
+    public String toString() {
+        return ("BICI " + getCodVeicolo()) + "\n" +
+                super.toString() + "\n" +
+                ("# marce: " + marce) + "\n" +
+                ("tariffa: " + tariffa + "eur/min");
     }
 }
