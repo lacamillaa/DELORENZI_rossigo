@@ -2,9 +2,9 @@ package org.example.modello;
 
 public class Bici extends Veicolo {
     private Integer marce;
-    private Double tariffa;
+    private Float tariffa;
 
-    public Bici(String codVeicolo, Integer marce, Double tariffa) {
+    public Bici(String codVeicolo, Integer marce, Float tariffa) {
         super(codVeicolo);
         this.marce = marce;
         this.tariffa = tariffa;
@@ -12,7 +12,7 @@ public class Bici extends Veicolo {
 
     @Override
     public Float calcolaCosto(Integer minuti) {
-        return 0.15F * minuti;
+        return tariffa * minuti;
     }
 
     @Override

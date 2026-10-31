@@ -27,7 +27,20 @@ public class FlottaService {
         utentiReg.put(u.getCodFiscale(), u);
     }
 
-    // se la batteria è scarica termina noleggio
+    public static Utente getUtente(String codFiscale) {
+        if (!utentiReg.containsKey(codFiscale)) {
+            throw new UtenteNonTrovatoException(codFiscale);
+        }
+        return utentiReg.get(codFiscale);
+    }
+
+    public static Veicolo getVeicolo(String codVeicolo) {
+        if (!veicoliReg.containsKey(codVeicolo)) {
+            throw new VeicoloNonTrovatoException(codVeicolo);
+        }
+        return veicoliReg.get(codVeicolo);
+    }
+
     public static void sbloccaVeicolo(String codVeicolo, String codFiscale) {
         if (!utentiReg.containsKey(codFiscale)) {
             throw new UtenteNonTrovatoException(codFiscale);
@@ -63,7 +76,6 @@ public class FlottaService {
             u.addebita(costoTot);
         } catch (CreditoInsufficienteException e) {
             println(e.getMessage());
-            println("L'utente " + u.getCodFiscale() + " è in debito di " + u.getDebito() + "eur");
         }
         v.scalaBatteria(consumoBatteria);
         if (v.getBatteria() < 15) {

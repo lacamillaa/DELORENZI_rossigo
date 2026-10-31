@@ -62,7 +62,7 @@ public class Utente {
             this.debito += costo - this.credito;
             Float credito = this.credito;
             this.credito = 0.0F;
-            throw new CreditoInsufficienteException(costo, credito);
+            throw new CreditoInsufficienteException(costo, credito, this);
         }
         this.credito -= costo;
     }
