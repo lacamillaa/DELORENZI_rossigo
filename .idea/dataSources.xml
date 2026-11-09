@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="rossigo.db" uuid="f50798a7-91da-4773-8824-863c0fb50044">
+    <data-source source="LOCAL" name="rossigo" uuid="089c32a9-7d33-489e-90a3-56e185377448">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

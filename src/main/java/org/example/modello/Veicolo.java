@@ -22,6 +22,10 @@ public abstract class Veicolo {
         return batteria;
     }
 
+    public void setBatteria(Float batteria) {
+        this.batteria = batteria;
+    }
+
     public Stato getStato() {
         return stato;
     }

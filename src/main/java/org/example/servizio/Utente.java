@@ -34,6 +34,14 @@ public class Utente {
         return debito;
     }
 
+    public void setCredito(Float credito) {
+        this.credito = credito;
+    }
+
+    public void setDebito(Float debito) {
+        this.debito = debito;
+    }
+
     public void ricaricaCredito(Float somma) {
         // riduci immediatamente il debito
         // somma -= debito

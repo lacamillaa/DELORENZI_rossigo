@@ -84,7 +84,7 @@ public class FlottaService {
             throw new BatteriaScaricaException(codVeicolo, v.getBatteria());
         }
         // noleggia il veicolo all'utente
-        Noleggio n = new Noleggio(u, v);
+        Noleggio n = new Noleggio(u.getCodFiscale(), v.getCodVeicolo());
         noleggioHashMap.put(v.getCodVeicolo(), n);
         v.setStato(Stato.IN_USO);
     }
@@ -97,10 +97,16 @@ public class FlottaService {
         // addebita il costoTot all'utente
         Noleggio n = noleggioHashMap.getOrDefault(codVeicolo, null);
         if (n == null) return;
-        Utente u = n.getUtente();
+        String codU = n.getCodUtente();
         try {
+            if (!utentiReg.containsKey(codU)) {
+                throw new UtenteNonTrovatoException(codU);
+            }
+            Utente u = utentiReg.get(codU);
             u.addebita(costoTot);
         } catch (CreditoInsufficienteException e) {
+            println(e.getMessage());
+        } catch (UtenteNonTrovatoException e) {
             println(e.getMessage());
         }
         v.scalaBatteria(consumoBatteria);
